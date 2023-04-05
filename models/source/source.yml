@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: sf_bike_hire
     database: sf-bike-hire
-    schema: sf_bike_hire 
+    schema: sf_bike_hire
     tables:
       - name: sf_bike_hire_agg
       - name: sf_weather
