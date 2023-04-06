@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: sf_bike_hire_and_weather
+    columns:
+      - name: rainfall_category
+        description: "{{ doc('rainfall') }}"
