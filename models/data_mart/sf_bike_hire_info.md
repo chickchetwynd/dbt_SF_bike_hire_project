@@ -26,8 +26,8 @@
 | Category                  | Total ride time (mins) |
 |---------------------------|------------------------|
 | Urgent maintenance needed | >= 15000               |
-| Maintenance needed        | >= 10000               |
-| Maintenance soon          | >= 7000                |
+| Maintenance needed        | >= 10000 and < 15000   |
+| Maintenance soon          | >= 7000 and <10000     |
 | Riding sweet              | < 7000                 |
 
 {% enddocs %}
