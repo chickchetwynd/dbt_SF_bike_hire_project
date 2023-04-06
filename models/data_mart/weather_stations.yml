@@ -1,9 +1,0 @@
-version: 2
-
-models:
-  - name: weather_stations
-    columns:
-      - name: station
-        tests:
-          - unique
-          - not_null
