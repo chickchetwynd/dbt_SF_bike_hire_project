@@ -47,4 +47,18 @@ models:
           - not_null
       - name: total_ride_time
         description: "Total amount of time the bike has been ridden in minutes"
+
+  - name: bike_maintenance_schedule
+    description: "Master list of which bikes need maintenance and their current location"
+    columns:
+      - name: bike_id
+        description: "Primary Key"
+        tests:
+          - unique
+          - not_null
+      - name: current_station_id
+        description: "The station ID where the bike was last returned to"
+      - name: status
+        description: "{{ doc('maintenance_schedule') }}"
+              
           

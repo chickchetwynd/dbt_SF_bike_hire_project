@@ -19,3 +19,15 @@
 | High              | > 10                       |
 
 {% enddocs %}
+
+
+{% docs maintenance_schedule %}
+
+| Category                  | Total ride time (mins) |
+|---------------------------|------------------------|
+| Urgent maintenance needed | >= 15000               |
+| Maintenance needed        | >= 10000               |
+| Maintenance soon          | >= 7000                |
+| Riding sweet              | < 7000                 |
+
+{% enddocs %}
