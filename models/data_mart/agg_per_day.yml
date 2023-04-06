@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: agg_per_day
+    description: Data from sf_bike_hire_and_weather but aggregated into day and start_station.
+    columns:
+      - name: avg_rain
+        description: "average daily rain in mm across all weather stations from the source."
+      - name: avg_temp
+        description: "average daily temperature in Celcius across all weather stations from the source."
+      - name: avg_duration
+        description: "average ride duration in minutes of all rides from that start station for that day."
