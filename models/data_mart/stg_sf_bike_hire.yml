@@ -24,3 +24,10 @@ models:
         description: "time is in PDT/PST"
       - name: bike_id
         description: "This column is the primary key in the bike_total_ride_duration model"
+
+  - name: weather_stations
+    columns:
+      - name: station
+        tests:
+          - unique
+          - not_null
