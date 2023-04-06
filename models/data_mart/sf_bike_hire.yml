@@ -60,5 +60,25 @@ models:
         description: "The station ID where the bike was last returned to"
       - name: status
         description: "{{ doc('maintenance_schedule') }}"
+        tests:
+          - accepted_values:
+              values:
+                - "Urgent maintenance needed"
+                - "Maintenance needed"
+                - "Maintenance soon"
+                - "Riding sweet!"
+              
+  - name: maintenance_work_orders
+    description: "Work orders for bikes in urgent need of maintenance and their current locations"
+    columns:
+      - name: work_order_number
+        description: "Primary key"
+      - name: current_station_id
+        description: "ID of the station where the bike was last docked"
+      - name: bike_id
+        description: "The unique ID of the bike that needs maintenance"
+        tests:
+          - unique
+          - not_null
               
           
