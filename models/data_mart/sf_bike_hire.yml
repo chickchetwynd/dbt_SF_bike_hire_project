@@ -26,8 +26,25 @@ models:
         description: "This column is the primary key in the bike_total_ride_duration model"
 
   - name: weather_stations
+    description: "List of all the weather stations and their location"
     columns:
       - name: station
+        description: "name and location of the station"
         tests:
           - unique
           - not_null
+      - name: station
+        description: "Primary key"
+
+
+  - name: bike_total_ride_duration
+    description: "All of the bikes an their status and location"
+    columns:
+      - name: bike_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: total_ride_time
+        description: "Total amount of time the bike has been ridden in minutes"
+          
