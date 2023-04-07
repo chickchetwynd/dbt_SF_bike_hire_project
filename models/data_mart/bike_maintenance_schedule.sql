@@ -1,35 +1,31 @@
 --Selecting the last ride of each unique bike_id
   WITH last_ride AS
  ( 
-  SELECT
-        bike_id,
-        max(end_time) as end_time
+  SELECT 
+  bike_id,
+  ride_id,
+  end_station_name as current_station_name,
+  end_station_id as current_station_id
 
-    FROM {{ ref('sf_bike_hire_and_weather') }}
-  
-    GROUP BY bike_id
-    ORDER BY bike_id ASC
- ),
 
---Selecting the location (end station name and id) of each unique bike_id
-current_location AS
-(
+FROM {{ ref('sf_bike_hire_and_weather') }} AS bhw
+
+WHERE end_time =
+    (
+    SELECT MAX(end_time)
+    FROM {{ ref('sf_bike_hire_and_weather') }} AS bhw2
+    WHERE bhw2.bike_id = bhw.bike_id
+    )
+    
+ORDER BY bike_id ASC
+ )
+
+--Selecting all info from the CTE and adding a status category (based off total ride time)
  SELECT
-    last_ride.bike_id as bike_id,
-    end_station_id as current_station_id,
-    end_station_name as current_station_name
 
- FROM last_ride INNER JOIN {{ ref('sf_bike_hire_and_weather') }}
-                USING (end_time)
-
- ORDER BY bike_id ASC
-)
-
-SELECT
-
-    current_location.bike_id,
-    current_location.current_station_id,
-    current_location.current_station_name,
+    last_ride.bike_id,
+    last_ride.current_station_id,
+    last_ride.current_station_name,
 
     CASE
         WHEN
@@ -42,6 +38,6 @@ SELECT
             "Riding sweet!" END as status
 
 
-FROM current_location INNER JOIN {{ ref('bike_total_ride_duration') }} USING (bike_id)
+FROM last_ride INNER JOIN {{ ref('bike_total_ride_duration') }} USING (bike_id)
 
 ORDER BY bike_id ASC
