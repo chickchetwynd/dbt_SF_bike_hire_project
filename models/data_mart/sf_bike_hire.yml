@@ -1,0 +1,86 @@
+version: 2
+
+models:
+  - name: agg_per_day
+    description: Data from sf_bike_hire_and_weather but aggregated into day and start_station.
+    columns:
+      - name: avg_rain
+        description: "average daily rain in mm across all weather stations from the source."
+      - name: avg_temp
+        description: "average daily temperature in Celcius across all weather stations from the source."
+      - name: avg_duration
+        description: "average ride duration in minutes of all rides from that start station for that day."
+        
+  - name: sf_bike_hire_and_weather
+    description: "One row = one bike hire including all aggregated weather data for that row's date."
+    columns:
+      - name: ride_id
+        description: "Primary Key"
+      - name: duration_mins
+        description: "decimal value does not == seconds"
+      - name: start_time
+        description: "time is in PDT/PST"
+      - name: rainfall_category
+        description: "{{ doc('rainfall') }}"
+      - name: end_time
+        description: "time is in PDT/PST"
+      - name: bike_id
+        description: "This column is the primary key in the bike_total_ride_duration model"
+
+  - name: weather_stations
+    description: "List of all the weather stations and their location"
+    columns:
+      - name: station
+        description: "name and location of the station"
+        tests:
+          - unique
+          - not_null
+      - name: station
+        description: "Primary key"
+
+
+  - name: bike_total_ride_duration
+    description: "All of the bikes an their status and location"
+    columns:
+      - name: bike_id
+        description: "Primary key"
+        tests:
+          - unique
+          - not_null
+      - name: total_ride_time
+        description: "Total amount of time the bike has been ridden in minutes"
+
+  - name: bike_maintenance_schedule
+    description: "Master list of which bikes need maintenance and their current location"
+    columns:
+      - name: bike_id
+        description: "Primary Key"
+        tests:
+          - unique
+          - not_null
+      - name: current_station_id
+        description: "The station ID where the bike was last returned to"
+      - name: status
+        description: "{{ doc('maintenance_schedule') }}"
+        tests:
+          - accepted_values:
+              values:
+                - "Urgent maintenance needed"
+                - "Maintenance needed"
+                - "Maintenance soon"
+                - "Riding sweet!"
+              
+  - name: maintenance_work_orders
+    description: "Work orders for bikes in urgent need of maintenance and their current locations"
+    columns:
+      - name: work_order_number
+        description: "Primary key"
+      - name: current_station_id
+        description: "ID of the station where the bike was last docked"
+      - name: bike_id
+        description: "The unique ID of the bike that needs maintenance"
+        tests:
+          - unique
+          - not_null
+              
+          
