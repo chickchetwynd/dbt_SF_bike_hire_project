@@ -14,6 +14,8 @@ models:
   - name: sf_bike_hire_and_weather
     description: "One row = one bike hire including all aggregated weather data for that row's date."
     columns:
+      - name: ride_id
+        description: "Primary Key"
       - name: duration_mins
         description: "decimal value does not == seconds"
       - name: start_time
