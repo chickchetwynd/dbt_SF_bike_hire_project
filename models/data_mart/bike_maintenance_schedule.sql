@@ -1,23 +1,23 @@
 --Selecting the last ride of each unique bike_id
   WITH last_ride AS
  ( 
+SELECT 
+    bike_id,
+    ride_id,
+    current_station_name,
+    current_station_id
+FROM 
+  (
   SELECT 
-  bike_id,
-  ride_id,
-  end_station_name as current_station_name,
-  end_station_id as current_station_id
-
-
-FROM {{ ref('sf_bike_hire_and_weather') }} AS bhw
-
-WHERE end_time =
-    (
-    SELECT MAX(end_time)
-    FROM {{ ref('sf_bike_hire_and_weather') }} AS bhw2
-    WHERE bhw2.bike_id = bhw.bike_id
-    )
-    
-ORDER BY bike_id ASC
+    row_number() OVER (PARTITION BY bike_id ORDER BY end_time DESC) AS row_num,
+    bike_id,
+    ride_id,
+    end_station_name as current_station_name,
+    end_station_id as current_station_id
+  FROM {{ ref('sf_bike_hire_and_weather') }}
+  )
+WHERE row_num = 1
+ORDER BY bike_id
  )
 
 --Selecting all info from the CTE and adding a status category (based off total ride time)
