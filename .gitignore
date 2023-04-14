@@ -2,3 +2,4 @@
 target/
 dbt_packages/
 logs/
+/dbt-sf-bike-hire-d378ffbeb1b4.json
