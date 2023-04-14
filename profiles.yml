@@ -1,0 +1,10 @@
+modaco:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: dbt-sf-bike-hire
+      dataset: dbt_cchetwynd
+      threads: 1
+      keyfile: /Users/chiggy/PycharmProjects/dbt_SF_bike_hire_project/dbt-sf-bike-hire-d378ffbeb1b4.json
