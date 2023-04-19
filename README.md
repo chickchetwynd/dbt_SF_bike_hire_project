@@ -13,7 +13,7 @@ I developed the majority of code on DBT Cloud but once finished, I cloned this r
 
 ### Schema
 
-<img width="1368" alt="Screenshot 2023-04-19 at 9 07 52 AM" src="https://user-images.githubusercontent.com/121225842/233135349-0cc01ba4-6bcb-447c-9af6-abbec92c20ba.png">
+<img width="1800" alt="Screenshot 2023-04-19 at 9 07 52 AM" src="https://user-images.githubusercontent.com/121225842/233135349-0cc01ba4-6bcb-447c-9af6-abbec92c20ba.png">
 
 Above is the [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) representing the final modeled data. The graph has a few stages from left to right: Sources, Staging models, and Mart models.
 
@@ -218,3 +218,11 @@ Here is a snippet of the documentation that DBT will auto generate when you run 
 Once you have finished developing and have all your models built (hoooray :confetti_ball: :tada: :balloon:), you can schedule DBT to run at whatever cadence suits your needs. In DBT cloud, this can easily be achieved by creating a __deployment__ environment and scheduling __jobs__ to run. Jobs are just DBT commands, like `dbt build`, that are automated to run on a schedule. If your data source updates daily, you can schedule DBT to run your models daily also so that you have the most up to date data in your platform. Some sources may update every few seconds, which is why it is so powerful to have a tool where you can organize your transformation layer- especially if you have many models.
 
 If you are developing with DBT locally, you will need to run DBT in conjuction with a scheduler, such as [Apache's Airflow](https://airflow.apache.org/). This is what I'm going to be learning next! :open_book: :nerd_face: :sweat_smile:
+
+
+### Version Control
+
+<img width="212" alt="Screenshot 2023-04-19 at 2 20 27 PM" src="https://user-images.githubusercontent.com/121225842/233202801-7e19230f-5e62-468e-a031-224d7efb1d8e.png">
+
+
+If you are developing locally or in DBT cloud, it is a good idea to leverage git for version control. For this project, I had pycharm synced up to this repository. In a real life working scenario, this would allow you to collaborate with other members on your team as you would be able to develop safely on a branch without corrupting any existing code. Then you could create a __pull request__ to merge any new code with the main branch once finished.
