@@ -74,7 +74,7 @@ SELECT
 FROM bike_hire
 ```
 
-In the __FROM__ clause, the query references the source as defined by the [.yml](https://github.com/chickchetwynd/dbt_SF_bike_hire_project/blob/main/models/source/source.yml) file. Now if the source changes, the SQL code doesn't also need to change preventing extra work 'down stream'.
+In the __FROM__ clause in the CTE named __bike_hire__, the query references the source as defined by the [.yml](https://github.com/chickchetwynd/dbt_SF_bike_hire_project/blob/main/models/source/source.yml) file. Now if the source changes, the SQL code doesn't also need to change preventing extra work 'down stream'.
 
 <br>
 
