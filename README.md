@@ -136,4 +136,33 @@ This query creates a hypothetical model which reperesents data showing when each
 
 This section of the DAG categorizes bikes based on the total amout of time they have been ridden and organizes individual bikes into maintenance 'status' groups. The bikes that have been ridden the longest get put into work orders first!
 
-#### .yml
+#### .yml Tests
+
+As mentioned earlier, you use .yml files to configure the project settings. In the code snippet below, the yml configures some of the basic tests available with DBT:
+
+```yml
+models:
+...
+  - name: bike_maintenance_schedule
+    description: "Master list of which bikes need maintenance and their current location"
+    columns:
+      - name: bike_id
+        description: "Primary Key"
+        tests:
+          - unique
+          - not_null
+      - name: current_station_id
+        description: "The station ID where the bike was last returned to"
+      - name: status
+        description: "{{ doc('maintenance_schedule') }}"
+        tests:
+          - accepted_values:
+              values:
+                - "Urgent maintenance needed"
+                - "Maintenance needed"
+                - "Maintenance soon"
+                - "Riding sweet!"
+...
+```
+Here, we have defined a model name and the tests that we run on that model. Each time the command `dbt build` or `dbt test` is run, these test are run and will create an alert if there is a failure. Some of the common dbt tests as used above are `- not_null` (checks a column for null values), `-unique` (checks that all values in a column are distinct, good for primary key columns), and `-accepted_values` (checks that values in a column match only what is defined). The results of these tests:
+
