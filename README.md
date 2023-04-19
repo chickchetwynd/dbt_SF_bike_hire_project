@@ -6,7 +6,7 @@
 
 ### Project Goal/Setup
 
-The main goal of this project was to learn how to use DBT to model and transform data stored in a cloud data platform. The data that I used was from the bicycle hire company Bay Wheels, who make a lot of their data [publicly available](https://www.lyft.com/bikes/bay-wheels/system-data). I also used adjacent data from the [NOAA](https://www.ncdc.noaa.gov/cdo-web/search) that represented raw data from Bay Area weather stations. I did some basic analysis of this data in a separate [project](https://github.com/chickchetwynd/Holistics-Project), the goal of this project was to develop a DBT workflow and leverage some of the basics tools that it has such as __modular SQL, tests, and documentation__. All of the project files are available in this repo.
+The main goal of this project was to learn how to use DBT to model and transform data stored in a cloud data platform. The data that I used was from the bicycle hire company Bay Wheels, who make a lot of their data [publicly available](https://www.lyft.com/bikes/bay-wheels/system-data). I also used adjacent data from the [NOAA](https://www.ncdc.noaa.gov/cdo-web/search) that represented raw data from Bay Area weather stations. I did some basic analysis of this data in a separate [project](https://github.com/chickchetwynd/Holistics-Project), the goal of this project was to develop a DBT workflow and leverage some of the basics tools that it has such as __modular SQL, tests, and documentation__. All of the project files are available in this repo feel free to look around :monocle_face:!
 
 I developed the majority of code on DBT Cloud but once finished, I cloned this repo to be able to develop on my local machine using DBT Core in which I used Pycharm as my IDE.
 
