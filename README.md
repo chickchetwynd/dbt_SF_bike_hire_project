@@ -169,6 +169,20 @@ Here, we have defined a model name and the tests that we run on that model. Each
 
 <img width="1000" alt="Screenshot 2023-04-19 at 10 10 13 AM" src="https://user-images.githubusercontent.com/121225842/233149638-5d3a60dd-0023-4be0-83c4-4940e1c1d8e7.png">
 
+#### Singular Tests
+
+You can also write your own tests for models, known as singular tests in DBT. To create these, you write a __.SQL__ file and place it in the project directory named [tests](https://github.com/chickchetwynd/dbt_SF_bike_hire_project/tree/main/tests). The test is a SQL query; if the query yeilds any results, the test has failed.
+
+```sql
+SELECT
+*
+FROM {{ ref('agg_per_day') }}
+WHERE avg_rain < 0
+```
+This very simple test checks to see if there are any rows in the model `agg_per_day` where avg_rain is less than 0 (you shouldn't be able to have rainfall less than 0 mm. if this were to occur, we can probably conclude that there is a data issue).
+
+When you run `dbt test`, if a test fails it will notify you. When you run `dbt build`, if a test fails, the model that was being tested will _NOT_ run and all down stream models won't run either.
+
 ### yml Docs
 
 In the .yml files you can also build supporting documentation for your models. You can build column descriptions and even reference markdown files. This helps anyone 'downstream' to understand the data and what it represnets.
