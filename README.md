@@ -185,7 +185,7 @@ When you run `dbt test`, if a test fails it will notify you. When you run `dbt b
 
 ### yml Docs
 
-In the .yml files you can also build supporting documentation for your models. You can build column descriptions and even reference markdown files. This helps anyone 'downstream' to understand the data and what it represnets.
+In the .yml files you can also build supporting documentation for your models. You can build column descriptions and even reference markdown files. This creates a useful resource for any users of the data and is an important part in reproducibility and communication.
 
 ```yml
 version: 2
@@ -213,3 +213,8 @@ Here is a snippet of the documentation that DBT will auto generate when you run 
 
 <img width="870" alt="Screenshot 2023-04-19 at 10 17 00 AM" src="https://user-images.githubusercontent.com/121225842/233151004-74b86360-9814-4ac7-aa5d-a20ef87811ef.png">
 
+### Deployment/Production
+
+Once you have finished developing and have all your models built (hoooray :confetti_ball: :tada: :balloon:), you can schedule DBT to run at whatever cadence suits your needs. In DBT cloud, this can easily be achieved by creating a __deployment__ environment and scheduling __jobs__ to run. Jobs are just DBT commands, like `dbt build`, that are automated to run on a schedule. If your data source updates daily, you can schedule DBT to run your models daily also so that you have the most up to date data in your platform. Some sources may update every few seconds, which is why it is so powerful to have a tool where you can organize your transformation layer- especially if you have many models.
+
+If you are developing with DBT locally, you will need to run DBT in conjuction with a scheduler, such as [Apache's Airflow](https://airflow.apache.org/). This is what I'm going to be learning next!
