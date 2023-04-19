@@ -18,7 +18,7 @@ I developed the majority of code on DBT Cloud but once finished, I cloned this r
 Above is the [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) representing the final modeled data. The graph has a few stages from left to right: Sources, Staging models, and Mart models.
 
 
-#### Sources
+### Sources
 
 The raw data was stored in a project in the data warehouse Big Query. I created a second project in Big Query (and gave it access to the raw data project) for the clean modeled data to be sent to. This involved creating service accounts as well as .json access keys that allow DBT and the data platform to link together. DBT have some great [resources](https://www.youtube.com/watch?v=ptkcjy4c-0g&t=4s) to help configure this. Once connected, in DBT you use __.yml__ files to configure the data __source__:
 
@@ -36,7 +36,7 @@ sources:
 
 __note__: The data in this project is static so some of the functionality of DBT is a little over kill. But the point of this project is to learn these skills in a safe environment!
 
-#### Staging Models
+### Staging Models
 
 Once sources are configured, you can write modular SQL queries to start to model the data:
 
@@ -80,7 +80,7 @@ In the __FROM__ clause, the query references the source as defined by the [.yml]
 
 Staging models are where the data transforms from raw to a basic level of organization. From these staging models we can create __mart__ models that further aggregate the data and start to form useful representations of the data.
 
-#### Mart Models
+### Mart Models
 
 [Mart Models](https://github.com/chickchetwynd/dbt_SF_bike_hire_project/tree/main/models/data_mart) represent data in a ready to use format that could be loaded into a BI tool, for example. let's look at a SQL query for one of these models:
 
@@ -136,7 +136,7 @@ This query creates a hypothetical model which reperesents data showing when each
 
 This section of the DAG categorizes bikes based on the total amout of time they have been ridden and organizes individual bikes into maintenance 'status' groups. The bikes that have been ridden the longest get put into work orders first!
 
-#### .yml Tests
+### .yml Tests
 
 As mentioned earlier, you use .yml files to configure the project settings. In the code snippet below, the yml configures some of the basic tests available with DBT:
 
@@ -165,4 +165,37 @@ models:
 ...
 ```
 Here, we have defined a model name and the tests that we run on that model. Each time the command `dbt build` or `dbt test` is run, these test are run and will create an alert if there is a failure. Some of the common dbt tests as used above are `- not_null` (checks a column for null values), `-unique` (checks that all values in a column are distinct, good for primary key columns), and `-accepted_values` (checks that values in a column match only what is defined). The results of these tests:
+<img width="1046" alt="Screenshot 2023-04-19 at 10 11 27 AM" src="https://user-images.githubusercontent.com/121225842/233149892-91daa07b-102e-46c4-ab94-99fc26350bfa.png">
+
+<img width="1000" alt="Screenshot 2023-04-19 at 10 10 13 AM" src="https://user-images.githubusercontent.com/121225842/233149638-5d3a60dd-0023-4be0-83c4-4940e1c1d8e7.png">
+
+### yml Docs
+
+In the .yml files you can also build supporting documentation for your models. You can build column descriptions and even reference markdown files. This helps anyone 'downstream' to understand the data and what it represnets.
+
+```yml
+version: 2
+
+models:
+...
+  - name: sf_bike_hire_and_weather
+    description: "One row = one bike hire including all aggregated weather data for that row's date."
+    columns:
+      - name: ride_id
+        description: "Primary Key"
+      - name: duration_mins
+        description: "decimal value does not == seconds"
+      - name: start_time
+        description: "time is in PDT/PST"
+      - name: rainfall_category
+        description: "{{ doc('rainfall') }}"
+      - name: end_time
+        description: "time is in PDT/PST"
+      - name: bike_id
+        description: "This column is the primary key in the bike_total_ride_duration model"
+        
+```
+Here is a snippet of the documentation that DBT will auto generate when you run the command `dbt docs`
+
+<img width="870" alt="Screenshot 2023-04-19 at 10 17 00 AM" src="https://user-images.githubusercontent.com/121225842/233151004-74b86360-9814-4ac7-aa5d-a20ef87811ef.png">
 
