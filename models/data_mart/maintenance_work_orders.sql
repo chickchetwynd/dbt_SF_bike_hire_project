@@ -4,7 +4,9 @@ select
     current_station_id,
     current_station_name,
     bike_id,
-    status
+    status,
+    current_station_latitude,
+    current_station_longitude
 
 from {{ ref("bike_maintenance_schedule") }}
 

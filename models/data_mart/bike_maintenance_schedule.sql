@@ -5,7 +5,9 @@ SELECT
     bike_id,
     ride_id,
     current_station_name,
-    current_station_id
+    current_station_id,
+    current_station_latitude,
+    current_station_longitude
 FROM 
   (
   SELECT 
@@ -13,7 +15,9 @@ FROM
     bike_id,
     ride_id,
     end_station_name as current_station_name,
-    end_station_id as current_station_id
+    end_station_id as current_station_id,
+    end_station_latitude as current_station_latitude,
+    end_station_longitude as current_station_longitude
   FROM {{ ref('sf_bike_hire_and_weather') }}
   )
 WHERE row_num = 1
@@ -26,6 +30,8 @@ ORDER BY bike_id
     last_ride.bike_id,
     last_ride.current_station_id,
     last_ride.current_station_name,
+    last_ride.current_station_latitude,
+    last_ride.current_station_longitude,
 
     CASE
         WHEN
