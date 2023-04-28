@@ -27,6 +27,8 @@ SELECT
     start_station_name,
     end_station_id,
     end_station_name,
+    end_station_latitude,
+    end_station_longitude,
     bike_id,
     user_type
 
