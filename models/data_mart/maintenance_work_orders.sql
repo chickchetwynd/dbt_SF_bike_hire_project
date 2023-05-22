@@ -11,5 +11,5 @@ select
 from {{ ref("bike_maintenance_schedule") }}
 
 where status like '%Urgent maintenance needed%'
--- OR status LIKE '%Maintenance needed%'
+    OR status LIKE '%Maintenance needed%'
 order by current_station_id asc

@@ -5,5 +5,5 @@ sources:
     database: sf-bike-hire
     schema: sf_bike_hire
     tables:
-      - name: sf_bike_hire_agg
+      - name: sf_bike_hire_agg_copy
       - name: sf_weather
