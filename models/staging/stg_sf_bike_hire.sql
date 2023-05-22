@@ -14,7 +14,7 @@ SELECT
   bike_id,
   user_type
   
-FROM {{ source('sf_bike_hire', 'sf_bike_hire_agg') }}
+FROM {{ source('sf_bike_hire', 'sf_bike_hire_agg_copy') }}
 )
 
 SELECT
