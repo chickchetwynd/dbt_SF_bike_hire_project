@@ -17,7 +17,8 @@ SELECT
     avg_temp,
     max_temp,
     min_temp,
-    rainfall_category
+    rainfall_category,
+    temperature_category
     
 FROM {{ ref('stg_sf_bike_hire') }} INNER JOIN {{ ref('stg_sf_weather') }}
 USING (date)

@@ -21,9 +21,15 @@ SELECT
   min_temp,
 
   CASE
-    WHEN avg_rain < 2.5 THEN "low rainfall"
-    WHEN avg_rain >= 2.5 AND avg_rain < 10 THEN "moderate rainfall"
-    WHEN avg_rain >= 10 THEN "high rainfall"
-    END AS rainfall_category
+    WHEN avg_rain < 2.5 THEN "Low Rainfall"
+    WHEN avg_rain >= 2.5 AND avg_rain < 10 THEN "Moderate Rainfall"
+    WHEN avg_rain >= 10 THEN "High Rainfall"
+    END AS rainfall_category,
+
+  CASE
+    WHEN avg_temp < 15 THEN "Cold"
+    WHEN avg_temp >= 15 AND avg_temp < 20 THEN "Warm"
+    WHEN avg_temp >= 20 THEN "Hot"
+    END AS temperature_category
 
   FROM CTE
