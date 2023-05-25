@@ -4,6 +4,10 @@
 <img width="100" alt="Screenshot 2023-04-19 at 8 41 59 AM" src="https://user-images.githubusercontent.com/121225842/233128684-bbb3f657-aecc-4bc4-ab4e-04cb099cf679.png">  <img width="550" alt="Screenshot 2023-04-19 at 8 45 53 AM" src="https://user-images.githubusercontent.com/121225842/233129736-01a9f83a-14f7-4bb2-9aca-87216effb2d2.png">  <img width="220" alt="Screenshot 2023-04-19 at 8 46 06 AM" src="https://user-images.githubusercontent.com/121225842/233129764-4b16425d-1933-457a-abea-8d57e3210642.png">
 </p>
 
+
+## [See the final dashboard here](https://app.powerbi.com/view?r=eyJrIjoiNTdlNDAyOGEtMjVkZC00M2FhLTk2NzMtY2UwOTFhZjIzODMyIiwidCI6IjQ1YjFlZjg5LTdhNjAtNDQ1ZS04ZjlmLTEwNzcwYzIxNWUzMiIsImMiOjF9)
+
+
 ### Project Goal/Setup
 
 The main goal of this project was to learn how to use DBT to model and transform data stored in a cloud data platform. The data that I used was from the San Francisco bicycle hire company Bay Wheels, who make a lot of their data [publicly available](https://www.lyft.com/bikes/bay-wheels/system-data). I also used adjacent data from the [NOAA](https://www.ncdc.noaa.gov/cdo-web/search) that represented raw data from Bay Area weather stations. I did some basic analysis of this data in a separate [project](https://github.com/chickchetwynd/Holistics-Project), the goal of this project was to develop a DBT workflow and leverage some of the basics tools that it has such as __modular SQL, tests, and documentation__. All of the project files are available in this repo feel free to look around :monocle_face:!
